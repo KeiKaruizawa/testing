@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hangman.Game"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions=".5*,.25*,.25*" ColumnDefinitions="*,*,*">
+
+        <!-- Background -->
+        <Image
+        Grid.Row="0"
+        Grid.RowSpan="3"
+        Grid.ColumnSpan="3"
+        Source="background.png"
+        Aspect="AspectFill"
+        ZIndex="0"/>
+        
+        <!-- Tree -->
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Source="tree.png"
+            Aspect="AspectFit"
+            ZIndex="1"
+            VerticalOptions="Start"
+            />
+
+        <!-- Score Sign -->
+        <Image
+         Grid.Row="0"
+         Grid.RowSpan="2"
+         Grid.ColumnSpan="3"
+         Source="scoresign.png"
+         WidthRequest="100"
+         HeightRequest="100"
+         Aspect="AspectFit"
+         ZIndex="2"
+         HorizontalOptions="End"
+         VerticalOptions="Start"
+         Margin="0,0,0,0"/>
+
+        <!-- Score -->
+        <Image
+         Grid.Row="0"
+         Grid.RowSpan="2"
+         Grid.ColumnSpan="3"
+         Source="{Binding ScoreImage}"
+         WidthRequest="70"
+         HeightRequest="80"
+         Aspect="AspectFit"
+         ZIndex="2"
+         HorizontalOptions="End"
+         VerticalOptions="Start"
+         Margin="0,14,15,0"/> 
+
+        <!-- Hangman -->
+        <Image 
+            Grid.ColumnSpan="2"
+            Source="{Binding HangmanImage}"
+            WidthRequest="250"
+            HeightRequest="250"
+            Aspect="AspectFit"
+            ZIndex="3"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="130,0,10,0"
+            />
+
+        <!-- Category Label (NEW) -->
+        <Label 
+            x:Name="lblCategory"
+            Grid.ColumnSpan="3"
+            Grid.Row="0"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            TextColor="Orange"
+            Text="{Binding CategoryText}"
+            FontFamily="OpenSansSemibold"
+            FontSize="22"
+            Margin="30,30,20,20"
+            ZIndex="10"
+            IsVisible="{Binding IsHintVisible}"/>
+
+        <!-- Spotlight -->
+        <Label 
+            x:Name="lblSpotlight"
+            Grid.ColumnSpan="3"
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            TextColor="White"
+            Text="{Binding Spotlight}"
+            FontSize="35"
+            Margin="0,0,0,10"
+            FontFamily="Halloween"/>
+
+        <Label 
+            x:Name="lblHint"
+            Grid.ColumnSpan="3"
+            Grid.Row="1"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            TextColor="White"
+            Text="{Binding HintText}"
+            FontFamily="OpenSansRegular"
+            FontSize="20"
+            Margin="40,75,20,20"
+            ZIndex="10"
+            IsVisible="{Binding IsHintVisible}"
+            LineBreakMode="WordWrap"
+            HorizontalTextAlignment="Center"
+            MaximumWidthRequest="300"/>
+
+        <Label 
+            x:Name="lblMessage"
+            Grid.ColumnSpan="3"
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            TextColor="White"
+            Text="{Binding Message}"  
+            FontFamily="OpenSansSemibold"
+            FontSize="30"
+            Margin="0,95,0,0"
+            ZIndex="10"
+            IsVisible="{Binding IsWinVisible}"/> 
+
+        <ScrollView 
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
+            Orientation="Vertical"
+            VerticalOptions="Center"
+            Margin="0,-100,0,0">
+
+            <FlexLayout
+                x:Name="KeyboardLayout"
+                IsVisible="{Binding IsKeyboardVisible}"
+                Direction="Row"
+                Wrap="Wrap"
+                JustifyContent="Center"
+                AlignItems="Center"
+                Margin="0,60,0,0"
+                BindableLayout.ItemsSource="{Binding AllLetters}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            Text="{Binding .}"
+                            BackgroundColor="DimGrey"
+                            TextColor="White"
+                            WidthRequest="43"   
+                            HeightRequest="38"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            FontFamily="Halloween"
+                            CornerRadius="8"
+                            Clicked="Button_Clicked"
+                            Padding="0, 0, 1, 1"
+                            Margin="3,3,0,3"/>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+        <VerticalStackLayout
+        Grid.Row="2"
+        Grid.ColumnSpan="3"
+        IsVisible="{Binding IsWinVisible}"  
+        HorizontalOptions="Center"
+        VerticalOptions="Center" 
+        Spacing="10"
+        Margin="0,20,0,60"> 
+
+            <Button
+            Text="NEXT"
+            IsVisible="{Binding IsNextVisible}"
+            Clicked="Next_Clicked"
+            BackgroundColor="#4CAF50"
+            TextColor="White"
+            FontFamily="Halloween"
+            FontSize="20"
+            CharacterSpacing="1"
+            HeightRequest="50"
+            WidthRequest="100"/>
+
+            <Button
+            Text="RETRY"
+            IsVisible="{Binding IsRetryVisible}"
+            Clicked="Retry_Clicked"
+            BackgroundColor="#F44336"
+            TextColor="White"
+            FontFamily="Halloween"
+            FontSize="19"
+            HeightRequest="50"
+            WidthRequest="100"/>
+
+            <Button
+            Text="EXIT"
+            IsVisible="{Binding IsExitVisible}"
+            Clicked="Exit_Clicked"
+            BackgroundColor="#9E9E9E"
+            TextColor="White"
+            FontFamily="Halloween"
+            FontSize="20"
+            CharacterSpacing="2"
+            HeightRequest="50"
+            WidthRequest="100"/>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

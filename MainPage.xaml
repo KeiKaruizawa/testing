@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hangman.MainPage"
+             Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="*,*,*">
+        <!-- Background Image -->
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Source="home.png"
+            Aspect="AspectFill"
+            HorizontalOptions="Center" />
+
+        <!-- Initial Play Button -->
+        <Button
+            x:Name="PlayButton"
+            Grid.Row="2"
+            Text="PLAY"
+            TextColor="#ED3251"
+            BackgroundColor="LightGray"
+            BorderColor="White"
+            FontSize="35"
+            Padding="15, 10, 15, 10"
+            Margin="0, 0, 0, 100"
+            CharacterSpacing="1"
+            FontFamily="Halloween"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="PlayButton_Clicked" />
+
+        <!-- Category Selection (Initially Hidden) -->
+        <VerticalStackLayout
+            x:Name="CategorySelection"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            IsVisible="False"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Spacing="15"
+            Margin="0, 0, 0, 50">
+
+            <Label
+                Text="SELECT CATEGORY"
+                TextColor="White"
+                FontSize="30"
+                FontFamily="Halloween"
+                HorizontalOptions="Center"
+                Margin="0, 0, 0, 20"/>
+
+            <!-- Halloween Button -->
+            <Button
+                Text="🎃 HALLOWEEN"
+                BackgroundColor="#FF6B35"
+                TextColor="White"
+                FontSize="22"
+                FontFamily="Halloween"
+                WidthRequest="280"
+                HeightRequest="60"
+                CornerRadius="15"
+                Clicked="Category_Clicked"
+                CommandParameter="halloween"/>
+
+            <!-- Animals Button -->
+            <Button
+                Text="🐾 ANIMALS"
+                BackgroundColor="#4ECDC4"
+                TextColor="White"
+                FontSize="22"
+                FontFamily="Halloween"
+                WidthRequest="280"
+                HeightRequest="60"
+                CornerRadius="15"
+                Clicked="Category_Clicked"
+                CommandParameter="animals"/>
+
+            <!-- Foods Button -->
+            <Button
+                Text="🍕 FOODS"
+                BackgroundColor="#FFD93D"
+                TextColor="White"
+                FontSize="22"
+                FontFamily="Halloween"
+                WidthRequest="280"
+                HeightRequest="60"
+                CornerRadius="15"
+                Clicked="Category_Clicked"
+                CommandParameter="foods"/>
+
+            <!-- Space Button -->
+            <Button
+                Text="🚀 SPACE"
+                BackgroundColor="#6C5CE7"
+                TextColor="White"
+                FontSize="22"
+                FontFamily="Halloween"
+                WidthRequest="280"
+                HeightRequest="60"
+                CornerRadius="15"
+                Clicked="Category_Clicked"
+                CommandParameter="space"/>
+
+            <!-- Technology Button -->
+            <Button
+                Text="💻 TECHNOLOGY"
+                BackgroundColor="#00B894"
+                TextColor="White"
+                FontSize="22"
+                FontFamily="Halloween"
+                WidthRequest="280"
+                HeightRequest="60"
+                CornerRadius="15"
+                Clicked="Category_Clicked"
+                CommandParameter="technology"/>
+
+            <!-- Back Button -->
+            <Button
+                Text="← BACK"
+                BackgroundColor="#95A5A6"
+                TextColor="White"
+                FontSize="18"
+                FontFamily="Halloween"
+                WidthRequest="150"
+                HeightRequest="50"
+                CornerRadius="10"
+                Margin="0, 20, 0, 0"
+                Clicked="Back_Clicked"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
